@@ -1,0 +1,303 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  background-image: url('up.png');
+    /* 让图片覆盖整个区域 */
+    background-size: cover;
+    /* 图片居中 */
+    background-position: center;
+    /* 防止图片重复 */
+    background-repeat: no-repeat;
+    /* 固定背景（可选） */
+    background-attachment: fixed;
+    /* 设置容器高度，否则可能看不到背景 */
+    height: 100vh;
+}
+
+body {
+  min-height: 100vh;
+  padding: 6px 8px 10px;
+}
+
+.poster-wall {
+  column-count: 6;
+  column-gap: 1px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.poster-wall.ordered {
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  column-count: 1;
+}
+
+.poster {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 2px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  transform: rotate(var(--rotation));
+  transition: transform 0.2s ease;
+  break-inside: avoid;
+  overflow: visible;
+}
+
+.poster-wall.ordered .poster {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transform: none;
+  break-inside: auto;
+}
+
+.poster:hover {
+  transform: rotate(0deg) translateY(-3px);
+}
+
+.poster-wall.ordered .poster:hover {
+  transform: translateY(-2px);
+}
+
+.poster img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.poster-wall.ordered .poster img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.project-order-meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-order-meta h3 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  line-height: 1.2;
+}
+
+.project-order-meta p {
+  margin: 8px 0 0;
+  color: rgba(28, 28, 28, 0.72);
+  line-height: 1.6;
+}
+
+.wall-intro {
+  max-width: 1200px;
+  margin: 64px auto 0;
+  padding: 28px 24px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(3px);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.68);
+}
+
+.intro-copy {
+  flex: 1;
+}
+
+.intro-copy h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.4rem, 2vw, 2.1rem);
+  line-height: 1.25;
+}
+
+.intro-copy p {
+  margin: 0;
+  line-height: 1.8;
+  color: rgba(21, 21, 21, 0.8);
+}
+
+.sort-button {
+  font-weight: 600;
+  background: rgb(0, 255, 34);
+border: none; 
+  /* 方式1：块级 + margin auto（需有宽度） */
+  display: block;
+  width: fit-content;      /* 或固定宽度，如 200px */
+  margin: 0 auto;          /* 水平居中 */
+}
+
+.sort-button:hover {
+  transform: translateY(-1px);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.project-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(14, 14, 14, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 20;
+}
+
+.project-overlay.active {
+  display: flex;
+}
+
+.project-panel {
+  position: relative;
+  width: min(92vw, 1200px);
+  height: min(92vh, 900px);
+  background: #f5f2ed;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.project-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0);
+  color: #1100ff;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#projectFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #f5f2ed;
+}
+
+@media (max-width: 1200px) {
+  .poster-wall {
+    column-count: 5;
+  }
+}
+
+@media (max-width: 920px) {
+  .poster-wall {
+    column-count: 3;
+  }
+
+  .poster-wall.ordered .poster {
+    grid-template-columns: 180px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    padding: 12px;
+  }
+
+  .poster-wall {
+    column-count: 2;
+    column-gap: 12px;
+  }
+
+  .poster {
+    margin-bottom: 12px;
+  }
+
+  .poster-wall.ordered .poster {
+    grid-template-columns: 1fr;
+  }
+
+  .poster-wall.ordered .poster img {
+    height: 220px;
+  }
+
+  .wall-intro {
+    display: block;
+    padding: 22px 18px 16px;
+  }
+
+  .sort-button {
+    width: 100%;
+    margin-top: 18px;
+  }
+}
+
+
+
+
+
+.logo1 {
+  display: block;      /* 变成块级，才能用 margin auto */
+  width: 60%;
+  height: auto;
+  margin:  auto;      /* 水平居中 */
+ 
+}
+.logo2 {
+  display: block;      /* 变成块级，才能用 margin auto */
+  width: 20%;
+  height: auto;
+  margin:  auto;      /* 水平居中 */
+ 
+}
+.logo3 {
+  display: block;      /* 变成块级，才能用 margin auto */
+  width: 10%;
+  height: auto;
+  margin:  auto;      /* 水平居中 */
+ 
+}
+
+.up {
+  position: fixed;
+    padding: 0;      /* 容器无内边距 */
+  margin: 0;
+  width: 20% ;  /* 建议给固定尺寸，避免过大 */
+  height: auto;  /* 高度自适应 */
+  z-index: 9999;  /* 确保浮在最上层 */
+}

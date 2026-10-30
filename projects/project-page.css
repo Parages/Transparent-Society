@@ -1,0 +1,44 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  background: linear-gradient(90deg, #ffffff 0%,  #00ff22 100%);
+  
+}
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 72px;
+}
+.back {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #1c1c1c;
+  text-decoration: none;
+  font-weight: 700;
+}
+h1 {
+  margin: 0 0 16px;
+  font-size: clamp(1.2rem, 2vw, 3.2rem);
+}
+.intro {
+  margin: 0 0 16px;
+  line-height: 1;
+  color: #ff00f2;
+}
+.section {
+  margin-top: 32px;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+}
+.gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  
+  background: #ddd;
+}
